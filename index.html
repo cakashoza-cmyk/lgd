@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d16">
+<title>લેબ ગ્રોન ડાયમંડ: માલ ભરું કે રાહ જોઉં? · LGD Desk</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%92%8E%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<!-- MAIN SCREEN (simple, Gujarati by default) -->
+<main id="simple" class="simple">
+  <div class="langs" id="langs"><button data-l="gu">ગુજરાતી</button><button data-l="hi">हिन्दी</button><button data-l="en">English</button></div>
+  <h1 class="s-title" id="s-title"></h1>
+  <section class="answer" id="answer"><div class="a-label" id="a-today"></div><div class="a-main" id="a-main">…</div><div class="a-reason" id="a-reason"></div><div class="a-reason" id="a-thin"></div></section>
+  <section class="tile"><div class="t-label" id="p-title"></div><div class="t-big" id="p-big">…</div><div class="t-sub" id="p-sub"></div><div class="t-sub" id="p-sub2"></div></section>
+  <section class="tile"><div class="t-label" id="d-title"></div><div class="t-mid" id="d-main">…</div><div class="t-sub" id="d-sub"></div></section>
+  <section class="tile"><div class="t-label" id="r-title"></div><div class="t-mid" id="r-main">…</div><div class="t-sub" id="r-sub"></div></section>
+  <section class="tile"><div class="t-label" id="c-title"></div><div class="t-sub" id="c-fx" style="font-size:1rem;color:var(--text)"></div><div class="t-sub" id="c-us" style="font-size:1rem;color:var(--text)"></div><div class="t-sub" id="c-pw"></div></section>
+  <section class="tile"><div class="t-label" id="rough-title"></div><div class="t-mid grey" id="rough-main"></div><div class="t-sub" id="rough-sub"></div></section>
+  <section class="tile"><label class="t-label" for="q-input" id="q-label"></label>
+    <div class="q-row"><input id="q-input" type="number" inputmode="decimal" min="100" max="2000000" step="1" placeholder="₹ / ct"><button class="q-clear" id="q-clear"></button></div>
+    <div class="t-sub" id="q-res"></div></section>
+  <p class="t-sub center" id="s-next"></p>
+  <div class="actions"><button class="wa" id="wa-btn"></button><button class="speak" id="speak-btn" style="display:none"></button></div>
+  <p class="t-sub center" id="s-updated"></p>
+  <p class="t-sub center" id="s-src"></p>
+  <p class="t-sub center" id="s-disc"></p>
+  <p class="center"><a href="#details" id="details-link" class="details-link"></a></p>
+</main>
+
+<!-- DETAILS (English, for bankers and advisers) -->
+<div class="container" id="details" style="display:none">
+<header>
+  <h1>LGD Desk · Surat <small>Lab-grown diamond data for manufacturers, traders, bankers and advisers: sources, formulas, rules, learning loop. <a href="#" id="back-link">← main screen</a> · <a href="methodology.html">methodology</a></small></h1>
+  <div class="meta"><div id="meta-data">Loading data…</div><div id="meta-model"></div></div>
+</header>
+<div class="tabs" id="tabs">
+  <button class="tab active" data-s="today">1. This month</button>
+  <button class="tab" data-s="exports">2. Exports &amp; prices</button>
+  <button class="tab" data-s="rules">3. Stock up or wait (your rules)</button>
+  <button class="tab" data-s="model">4. Forecast &amp; model</button>
+  <button class="tab" data-s="track">5. Track record &amp; learning</button>
+  <button class="tab" data-s="sources">6. Sources &amp; formulas</button>
+</div>
+<div id="err" class="warn" style="display:none"></div>
+<div class="screen active" id="s-today"></div>
+<div class="screen" id="s-exports"></div>
+<div class="screen" id="s-rules"></div>
+<div class="screen" id="s-model"></div>
+<div class="screen" id="s-track"></div>
+<div class="screen" id="s-sources"></div>
+<p class="sub" style="margin-top:16px">Public data only. Your own entries stay in this browser (localStorage) and are never uploaded. Decision support for timing LGD rough and polished purchases; not investment advice. Legend: <span class="pill p-official">official</span> government / export council data · <span class="pill p-live">live</span> auto-fetched market data · <span class="pill p-unofficial">unofficial</span> public but unofficial source · <span class="pill p-est">estimate</span> calculated by the app · <span class="pill p-input">your input</span> · <span class="pill p-assume">assumption</span> editable default · <span class="pill p-none">no live source</span></p>
+</div>
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+id,kind,made_on,data_month,target_month,model_version,call,pred,naive,scored,realised,error_pct,naive_error_pct,realised_move_pct,hit
+2026-10-value,value,2026-11-20,2026-10,2026-11,v1.0,,164.0,170.46,False,,,,,
+2026-10-ppc,ppc,2026-11-20,2026-10,2026-11,v1.0,,62.3,,False,,,,,
+2026-10-call,call,2026-11-20,2026-10,2026-11,v1.0,buy part,,,False,,,,,

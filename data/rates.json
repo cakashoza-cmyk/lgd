@@ -1,0 +1,53 @@
+{
+ "verified_on": "2026-11-20",
+ "note": "Checked by hand from the linked official documents on the date shown. Not refreshed automatically: re-check when a notification changes.",
+ "us_301_india": {
+  "label": "US extra duty on goods from India (Section 301, forced-labour action)",
+  "pct": 10,
+  "from": "2026-07-24",
+  "source": "USTR notice, Federal Register 91 FR 47318 (28 Jul 2026), doc 2026-15181",
+  "url": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies",
+  "detail": "10% on goods of India entered on or after 24 Jul 2026, subject to the notice's Annex I/II exemptions. Trade summaries (labgrowndiamondsupplier.com, citing GJEPC) say lab-grown diamonds from India pay this 10%; check the annex or your customs broker for your exact goods."
+ },
+ "us_mfn_7104_91_10": {
+  "label": "US base (MFN) duty, cut lab-grown diamonds for jewellery (HTS 7104.91.10)",
+  "pct": 0,
+  "source": "USITC Harmonized Tariff Schedule, heading 7104",
+  "url": "https://hts.usitc.gov/search?query=7104.91.10",
+  "detail": "Free. Rough synthetic diamonds (7104.21.00) 3%. Total on cut LGD from India = 0% + 10% = 10% of customs value."
+ },
+ "us_301_others": {
+  "label": "Same Section 301 duty on China, Hong Kong, UAE, Thailand, Israel and most other investigated economies",
+  "pct": 12.5,
+  "from": "2026-07-24",
+  "source": "USTR press release, 23 Jul 2026",
+  "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations",
+  "detail": "China also pays its older 7.5% Section 301 tariff on this heading (htslookup.com summary of CBP rates). India's 10% is lower than most competing origins."
+ },
+ "dgvcl_htp1": {
+  "label": "DGVCL power tariff, HT industrial (HTP-I), energy charge",
+  "from": "2026-04-01",
+  "bands": [
+   {
+    "upto_kva": 500,
+    "rs_kwh": 4.0
+   },
+   {
+    "upto_kva": 2500,
+    "rs_kwh": 4.2
+   },
+   {
+    "upto_kva": null,
+    "rs_kwh": 4.3
+   }
+  ],
+  "source": "GERC tariff schedule for DGVCL, MGVCL, PGVCL, UGVCL, effective 1 Apr 2026 (tariff order case 2581/2025, 25 Mar 2026)",
+  "url": "https://gercin.org/order/tariff-order-for-dgvcl-8/",
+  "detail": "Excludes demand charges, FPPAS (fuel surcharge, changes during the year), electricity duty and taxes; take those from your bill. Rates read from the GERC schedule as summarised at konduktor.in/gujarat-electricity-tariff; the GERC PDF could not be opened from our server, so check your own bill.",
+  "tod": "Peak-hour (7-11 am, 6-10 pm) +0.45 ₹/kWh up to 500 kVA, +0.85 above; energy used 11 am-5 pm -0.60 ₹/kWh."
+ },
+ "gjepc_release": {
+  "label": "When new data comes",
+  "detail": "GJEPC publishes each month's export review around the 7th-15th of the next month (Oct 2026 report dated 9 Nov 2026). The app checks daily; the call changes only when a new month arrives."
+ }
+}

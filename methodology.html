@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LGD Desk methodology</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%92%8E%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<style>.m{max-width:860px;margin:0 auto}.m h2{font-size:1.05rem;margin:18px 0 6px;color:#7dd3fc}.m p,.m li{font-size:.9rem;color:#cbd5e1;margin-bottom:6px}.m ul{padding-left:18px}</style></head>
+<body><div class="m">
+<p><a href="index.html">← main screen</a> · <a href="index.html#details">details</a></p>
+<h1 style="font-size:1.3rem;margin-top:8px">LGD Desk methodology</h1>
+<p class="sub">The lab-grown diamond counterpart of <a href="https://cakashoza-cmyk.github.io/sttie/">STTIE</a> (yarn) and <a href="https://cakashoza-cmyk.github.io/gold/">Gold Desk</a>, built on the same code, data rules and learning loop.</p>
+
+<h2>1. Who it is for and what it answers</h2>
+<ul><li><b>Audience:</b> Surat lab-grown diamond (LGD) manufacturers (CVD/HPHT growers, cutters and polishers) and polished LGD traders, plus their bankers.</li>
+<li><b>The one question:</b> this month, should I stock up on LGD (rough or polished), wait, or buy only part (what confirmed orders need)?</li>
+<li><b>Why monthly:</b> the only free, official, regularly published LGD figures are GJEPC's monthly export reviews. There is no free daily or weekly LGD price. So the call changes once a month, when a new GJEPC report appears (usually the 7th–15th of the next month). The site checks daily so a new report is picked up within a day. It does not invent daily signals.</li>
+<li>Gujarati-first one-screen view with Hindi and English, WhatsApp share and read-aloud. Details in English.</li>
+<li><b>Not investment advice.</b> Decision support from public data only.</li></ul>
+
+<h2>2. Principles</h2>
+<ul><li>No invented data. Every number is fetched from a named public source with its date, is a statutory rate checked by hand with its link and date, is arithmetic on those numbers with the formula shown, or is your own entry.</li>
+<li>Where no free source exists the tile stays grey (rough LGD prices, Surat trade prices). Unofficial sources are labelled <i>unofficial</i>.</li>
+<li>No AI produces any number, call, weight or translation. Text is fixed templates. Headlines can only soften a 'stock up' call to 'buy part'.</li>
+<li>Zero running cost: static GitHub Pages plus one GitHub Actions run a day (10:00 IST). No keys, no backend, no login.</li></ul>
+
+<h2>3. Data</h2>
+<ul><li><b>GJEPC monthly export review</b> (gjepc.org/statistics.php, public PDFs, official, provisional): the "Polished Lab Grown Diamonds" text section gives the month's export value and the same month last year, the April-to-date value and last year's, and (since Sep 2025) April-to-date carats with last year's carats and the price per carat. Only the PDF's text layer is read; the image annex (monthly carats, rough LGD imports) is not OCR'd. Each month uses its own report (first-published figures). GJEPC later reconciles with DGCI&amp;S and restates last year's figures, sometimes by a lot (carats especially).</li>
+<li><b>Caratlytics Diamond Price Index</b> (CC BY 4.0, <i>unofficial</i>): monthly median listed price per carat of lab-grown stones at 140+ mostly US online retailers, since Dec 2025. Asking prices, not trade prices; mix effects. Shown for context; not used in the call.</li>
+<li><b>US BLS:</b> CPI for jewelry (CUUR0000SEAG02) and jobs at jewelry, luggage and leather stores (CEU4245830001). <b>FRED IR413:</b> US import price index for gems, jewelry and coins (mostly natural diamonds and gold; context only).</li>
+<li><b>USD/INR:</b> FBIL reference rate from the RBI homepage; ECB monthly averages (Frankfurter) for history.</li>
+<li><b>Checked by hand</b> (data/rates.json): US Section 301 duty of 10% on goods of India from 24 Jul 2026 (Federal Register 91 FR 47318), base US duty 0% on HTS 7104.91.10, 12.5% on most rival origins; DGVCL HTP-I energy charge ₹4.00/4.20/4.30 per kWh from 1 Apr 2026 (GERC tariff schedule).</li>
+<li><b>Headlines:</b> Google News RSS, context only.</li>
+<li><b>Not available free:</b> rough LGD prices and rough import volumes (images only in GJEPC reports; DGCI&amp;S/TradeStat data for Apr–Oct 2026 not yet released), Surat polished trade prices (use the quote tracker on the main screen), US Census HS 7104 imports (API needs a key).</li></ul>
+
+<h2>4. Gauges and formulas</h2>
+<ul><li><b>Month carats</b> = this report's April-to-date carats − the previous month's report's April-to-date carats (April: the April figure itself). Only same-financial-year, consecutive reports are differenced; otherwise the month stays blank.</li>
+<li><b>Export price per carat (month)</b> = month export value ÷ month carats. It moves with the mix of sizes and qualities as well as with price.</li>
+<li><b>Price pressure</b> = this year's April-to-date price per carat ÷ last year's for the same months, as stated in the same report, − 1.</li>
+<li><b>Demand</b> = last 3 months' export value ÷ the same 3 months last year (as stated in those reports) − 1.</li></ul>
+
+<h2>5. Rules and the call</h2>
+<ul><li>Price rule (default 5%): price pressure ≤ −5% → wait; ≥ +5% → stock up. Demand rule (default 15%): demand ≥ +15% → stock up; ≤ −15% → wait. Both editable.</li>
+<li>Both agree → that action; they disagree or neither fires → buy part.</li>
+<li>Each rule side is back-tested against what happened next: the following month's GJEPC export price per carat (up: stock up right; down: wait right; buy part right within ±3%). A side drives the call only with at least 12 scored signals and a better record than doing the opposite. Until then the call is 'buy part' and the page says the data is too thin.</li>
+<li>A recent headline about falling prices, a glut or a price war can soften 'stock up' to 'buy part'; it can never create a call.</li></ul>
+
+<h2>6. Forecast, learning and the ledger</h2>
+<ul><li>Next month's export value (demand): ridge least squares on momentum, 3-month YoY growth, US jewelry CPI 3-month change and USD/INR 1-month change, re-fitted each run. Walk-forward back-test from 24 months of warm-up, each forecast fitted only on earlier months. A variable keeps weight only if alone it cuts walk-forward error by at least 1% versus 'no change', and the kept set must beat 'no change'.</li>
+<li>Next month's price per carat: only about ten month-to-month pairs exist, so the forecast is 'no change' with zero weights until 24 months are available.</li>
+<li>Each new GJEPC month the app logs a dated set of predictions (export value, price per carat, call) in data/predictions.json with the model version, and scores them when the next report arrives. data/track_record.csv, data/models/ (archived versions) and the changelog in data/model.json keep the history.</li></ul>
+</div></body></html>

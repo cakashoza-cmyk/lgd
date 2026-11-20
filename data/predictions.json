@@ -1,0 +1,63 @@
+{
+"predictions": [
+{
+"id": "2026-10-value",
+"kind": "value",
+"pred": 164.0,
+"naive": 170.46,
+"pred_pct": -3.87,
+"weights": [
+-0.3266,
+0.0,
+0.0,
+0.0
+],
+"made_on": "2026-11-20",
+"data_month": "2026-10",
+"target_month": "2026-11",
+"model_version": "v1.0",
+"scored": false
+},
+{
+"id": "2026-10-ppc",
+"kind": "ppc",
+"pred": 62.3,
+"basis": "no change (model has no weight)",
+"made_on": "2026-11-20",
+"data_month": "2026-10",
+"target_month": "2026-11",
+"model_version": "v1.0",
+"scored": false
+},
+{
+"id": "2026-10-call",
+"kind": "call",
+"call": "buy part",
+"raw_call": "buy part",
+"rule_price": "wait",
+"rule_demand": "stock up",
+"rules_active": {
+"price:stock up": false,
+"price:wait": false,
+"demand:stock up": false,
+"demand:wait": false
+},
+"data_too_thin": true,
+"softened": null,
+"inputs": {
+"usd_per_ct": 62.3,
+"price_yoy_pct": -6.72,
+"demand3_pct": 49.41,
+"rules": {
+"price_pct": 5.0,
+"demand_pct": 15.0
+}
+},
+"made_on": "2026-11-20",
+"data_month": "2026-10",
+"target_month": "2026-11",
+"model_version": "v1.0",
+"scored": false
+}
+]
+}

@@ -1,0 +1,384 @@
+{
+ "version": "v1.0",
+ "generated_ist": "2026-11-20 11:16 IST",
+ "data_month": "2026-10",
+ "next_data_expected": "2026-12-07 to 2026-12-15 (GJEPC report for 2026-11)",
+ "signature": {
+  "mask": [
+   1,
+   0,
+   0,
+   0
+  ],
+  "weights": [
+   -0.3266,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "active": {
+   "price:stock up": false,
+   "price:wait": false,
+   "demand:stock up": false,
+   "demand:wait": false
+  }
+ },
+ "changelog": [
+  {
+   "version": "v1.0",
+   "date": "2026-11-20",
+   "change": "First version: monthly LGD call from GJEPC data; all model weights start at 0."
+  }
+ ],
+ "rules": {
+  "price_pct": 5.0,
+  "demand_pct": 15.0
+ },
+ "min_n": 12,
+ "band": 3.0,
+ "value": {
+  "target": "next month's LGD polished export value (GJEPC)",
+  "vars": [
+   "momentum",
+   "yoy3",
+   "us_cpi",
+   "rupee"
+  ],
+  "weights": [
+   -0.3266,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "mask": [
+   1,
+   0,
+   0,
+   0
+  ],
+  "gate_reason": "kept: momentum",
+  "backtest": {
+   "n": 30,
+   "start": "2023-06",
+   "end": "2026-09",
+   "mae_pct": 15.29,
+   "naive_mae_pct": 15.69,
+   "hit_rate": 40.0,
+   "naive_hit_rate": 13.3
+  },
+  "naive": {
+   "n": 30,
+   "start": "2023-06",
+   "end": "2026-09",
+   "mae_pct": 15.69,
+   "naive_mae_pct": 15.69,
+   "hit_rate": 13.3,
+   "naive_hit_rate": 13.3
+  },
+  "single": {
+   "momentum": {
+    "n": 30,
+    "start": "2023-06",
+    "end": "2026-09",
+    "mae_pct": 15.29,
+    "naive_mae_pct": 15.69,
+    "hit_rate": 40.0,
+    "naive_hit_rate": 13.3
+   },
+   "yoy3": {
+    "n": 30,
+    "start": "2023-06",
+    "end": "2026-09",
+    "mae_pct": 15.75,
+    "naive_mae_pct": 15.69,
+    "hit_rate": 13.3,
+    "naive_hit_rate": 13.3
+   },
+   "us_cpi": {
+    "n": 30,
+    "start": "2023-06",
+    "end": "2026-09",
+    "mae_pct": 16.1,
+    "naive_mae_pct": 15.69,
+    "hit_rate": 13.3,
+    "naive_hit_rate": 13.3
+   },
+   "rupee": {
+    "n": 30,
+    "start": "2023-06",
+    "end": "2026-09",
+    "mae_pct": 17.28,
+    "naive_mae_pct": 15.69,
+    "hit_rate": 3.3,
+    "naive_hit_rate": 13.3
+   }
+  },
+  "ungated": {
+   "n": 30,
+   "start": "2023-06",
+   "end": "2026-09",
+   "mae_pct": 16.49,
+   "naive_mae_pct": 15.69,
+   "hit_rate": 33.3,
+   "naive_hit_rate": 13.3
+  },
+  "n_fit": 54,
+  "features_now": {
+   "momentum": 11.84,
+   "yoy3": 49.41,
+   "us_cpi": -0.22,
+   "rupee": 0.06
+  },
+  "pred_pct": -3.87,
+  "pred_usd_mn": 164.0,
+  "last_usd_mn": 170.46,
+  "model_has_edge": true
+ },
+ "ppc": {
+  "target": "next month's LGD export price per carat (GJEPC)",
+  "pairs": 10,
+  "weights": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "reason": "only 10 month-to-month pairs exist (carats are published only since Sep 2025); a model needs at least 24. Forecast = no change.",
+  "last": 62.3,
+  "pred": 62.3
+ },
+ "rules_backtest": {
+  "price": {
+   "n": 10,
+   "hit_rate": 50.0,
+   "by_call": {
+    "wait": {
+     "n": 10,
+     "hit_rate": 50.0,
+     "opposite_hit_rate": 50.0
+    }
+   },
+   "signals": [
+    {
+     "month": "2025-12",
+     "call": "wait",
+     "next_ppc_move_pct": 10.3,
+     "right": false
+    },
+    {
+     "month": "2026-01",
+     "call": "wait",
+     "next_ppc_move_pct": -36.09,
+     "right": true
+    },
+    {
+     "month": "2026-02",
+     "call": "wait",
+     "next_ppc_move_pct": 53.3,
+     "right": false
+    },
+    {
+     "month": "2026-03",
+     "call": "wait",
+     "next_ppc_move_pct": -5.71,
+     "right": true
+    },
+    {
+     "month": "2026-04",
+     "call": "wait",
+     "next_ppc_move_pct": 0.25,
+     "right": false
+    },
+    {
+     "month": "2026-05",
+     "call": "wait",
+     "next_ppc_move_pct": -3.28,
+     "right": true
+    },
+    {
+     "month": "2026-06",
+     "call": "wait",
+     "next_ppc_move_pct": 3.8,
+     "right": false
+    },
+    {
+     "month": "2026-07",
+     "call": "wait",
+     "next_ppc_move_pct": -11.26,
+     "right": true
+    },
+    {
+     "month": "2026-08",
+     "call": "wait",
+     "next_ppc_move_pct": 14.73,
+     "right": false
+    },
+    {
+     "month": "2026-09",
+     "call": "wait",
+     "next_ppc_move_pct": -11.42,
+     "right": true
+    }
+   ],
+   "retail_check": {
+    "n": 10,
+    "hit_rate": 70.0,
+    "by_call": {
+     "wait": {
+      "n": 10,
+      "hit_rate": 70.0,
+      "opposite_hit_rate": 30.0
+     }
+    }
+   }
+  },
+  "demand": {
+   "n": 4,
+   "hit_rate": 25.0,
+   "by_call": {
+    "wait": {
+     "n": 1,
+     "hit_rate": 0.0,
+     "opposite_hit_rate": 100.0
+    },
+    "stock up": {
+     "n": 3,
+     "hit_rate": 33.3,
+     "opposite_hit_rate": 66.7
+    }
+   },
+   "signals": [
+    {
+     "month": "2025-12",
+     "call": "wait",
+     "next_ppc_move_pct": 10.3,
+     "right": false
+    },
+    {
+     "month": "2026-07",
+     "call": "stock up",
+     "next_ppc_move_pct": -11.26,
+     "right": false
+    },
+    {
+     "month": "2026-08",
+     "call": "stock up",
+     "next_ppc_move_pct": 14.73,
+     "right": true
+    },
+    {
+     "month": "2026-09",
+     "call": "stock up",
+     "next_ppc_move_pct": -11.42,
+     "right": false
+    }
+   ],
+   "retail_check": {
+    "n": 4,
+    "hit_rate": 50.0,
+    "by_call": {
+     "wait": {
+      "n": 1,
+      "hit_rate": 100.0,
+      "opposite_hit_rate": 0.0
+     },
+     "stock up": {
+      "n": 3,
+      "hit_rate": 33.3,
+      "opposite_hit_rate": 66.7
+     }
+    }
+   }
+  },
+  "active": {
+   "price:stock up": false,
+   "price:wait": false,
+   "demand:stock up": false,
+   "demand:wait": false
+  },
+  "min_n": 12,
+  "outcomes": [
+   {
+    "month": "2025-12",
+    "next_ppc_move_pct": 10.3
+   },
+   {
+    "month": "2026-01",
+    "next_ppc_move_pct": -36.09
+   },
+   {
+    "month": "2026-02",
+    "next_ppc_move_pct": 53.3
+   },
+   {
+    "month": "2026-03",
+    "next_ppc_move_pct": -5.71
+   },
+   {
+    "month": "2026-04",
+    "next_ppc_move_pct": 0.25
+   },
+   {
+    "month": "2026-05",
+    "next_ppc_move_pct": -3.28
+   },
+   {
+    "month": "2026-06",
+    "next_ppc_move_pct": 3.8
+   },
+   {
+    "month": "2026-07",
+    "next_ppc_move_pct": -11.26
+   },
+   {
+    "month": "2026-08",
+    "next_ppc_move_pct": 14.73
+   },
+   {
+    "month": "2026-09",
+    "next_ppc_move_pct": -11.42
+   }
+  ],
+  "n_outcomes": 10,
+  "base_up": 50.0,
+  "base_down": 50.0
+ },
+ "decision": {
+  "call": "buy part",
+  "raw_call": "buy part",
+  "rule_price": "wait",
+  "rule_demand": "stock up",
+  "price_yoy_pct": -6.72,
+  "demand3_pct": 49.41,
+  "rules_active": {
+   "price:stock up": false,
+   "price:wait": false,
+   "demand:stock up": false,
+   "demand:wait": false
+  },
+  "data_too_thin": true,
+  "news_flag": null,
+  "softened": null
+ },
+ "lessons": [
+  "Export-value forecast back-test (2023-06 to 2026-09, 30 months): average error 15.29% vs 15.69% for 'no change'. All four variables together: error 16.49%. Gate: kept: momentum.",
+  "Price per carat: only 10 month-to-month pairs exist (carats are published only since Sep 2025); a model needs at least 24. Forecast = no change.",
+  "Back-test of the price rule (5.0%): 10 scored signals, right 50.0% (wait: 50.0% of 10, opposite 50.0%). A side needs at least 12 signals and to beat the opposite action before it can drive the call.",
+  "Back-test of the demand rule (15.0%): 4 scored signals, right 25.0% (wait: 0.0% of 1, opposite 100.0%, stock up: 33.3% of 3, opposite 66.7%). A side needs at least 12 signals and to beat the opposite action before it can drive the call.",
+  "Rule sides used for this month's call: none.",
+  "DATA TOO THIN: no rule has earned trust yet, so the call stays 'buy part' (buy only for confirmed orders) whatever the rules say. It will change only after enough months are scored.",
+  "Live track record: 0 predictions scored so far. Learning: too few to judge."
+ ],
+ "gauges": {
+  "price_yoy_pct": -6.72,
+  "demand3_pct": 49.41,
+  "months": [
+   "2026-08",
+   "2026-10"
+  ],
+  "retail_1m_pct": 2.17,
+  "retail_3m_pct": -11.66,
+  "retail_since_start_pct": -40.86,
+  "retail_start": "2025-12"
+ }
+}
