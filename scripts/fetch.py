@@ -39,21 +39,30 @@ def pdf_text(data):
 
 
 # ---------- sources ----------
-def gjepc():
+def gjepc(site_errors):
     """GJEPC (Gem & Jewellery Export Promotion Council) monthly export reports, public PDFs on gjepc.org/statistics.php.
-    Only the text 'Polished Lab Grown Diamonds' section is read. Parsed reports are cached in data/gjepc_reports.json."""
+    Only the text 'Polished Lab Grown Diamonds' section is read. Parsed reports are cached in data/gjepc_reports.json.
+    GJEPC's site refuses cloud servers (HTTP 403 from GitHub Actions), so a report PDF can also be dropped into inbox/
+    (GitHub web upload); the workflow parses it the same way."""
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
-    page = get(GJ_PAGE, BROWSER, timeout=60).decode("utf-8", "ignore")
-    links = sorted(set(html.unescape(l) for l in re.findall(r'href="(admin/StatisticsExport/[^"]+\.pdf)"', page, re.I)))
     new = 0
-    for l in links:
-        if l in cache:
-            continue
-        try:
-            cache[l] = G.parse(pdf_text(get("https://gjepc.org/" + l, BROWSER, timeout=90)))
-        except Exception as e:  # noqa: BLE001
-            print("gjepc pdf failed", l, e); continue
-        new += 1
+    try:
+        page = get(GJ_PAGE, BROWSER, timeout=60).decode("utf-8", "ignore")
+        links = sorted(set(html.unescape(l) for l in re.findall(r'href="(admin/StatisticsExport/[^"]+\.pdf)"', page, re.I)))
+        for l in links:
+            if l in cache:
+                continue
+            try:
+                cache[l] = G.parse(pdf_text(get("https://gjepc.org/" + l, BROWSER, timeout=90)))
+            except Exception as e:  # noqa: BLE001
+                print("gjepc pdf failed", l, e); continue
+            new += 1
+    except Exception as e:  # noqa: BLE001
+        site_errors["gjepc_site"] = f"{type(e).__name__}: {e}"[:200] + " (GJEPC blocks cloud servers; add new report PDFs to inbox/)"
+    for f in sorted((ROOT / "inbox").glob("*.pdf")):
+        k = "inbox/" + f.name
+        if k not in cache:
+            cache[k] = G.parse(pdf_text(f.read_bytes())); new += 1
     CACHE.write_text(json.dumps(cache, indent=0, sort_keys=True))
     reps, src = {}, {}
     for l, r in cache.items():
@@ -61,11 +70,16 @@ def gjepc():
             reps[r["month"]] = r; src[r["month"]] = l
     rows = G.build_series(reps)
     for r in rows:
-        r["report_url"] = "https://gjepc.org/" + src[r["month"]].replace(" ", "%20")
+        l = src[r["month"]]
+        r["report_url"] = ("https://github.com/cakashoza-cmyk/lgd/blob/main/" if l.startswith("inbox/") else "https://gjepc.org/") + l.replace(" ", "%20")
         r["report_date"] = reps[r["month"]].get("report_date")
     last = rows[-1]
     check(last["usd_mn"], 5, 2000, "lgd usd_mn")
-    common = dict(source="GJEPC monthly export review (provisional), Polished Lab Grown Diamonds section", source_url=GJ_PAGE, status="official")
+    exp = (NOW.replace(day=1) - timedelta(days=1)) if NOW.day >= 16 else (NOW.replace(day=1) - timedelta(days=1)).replace(day=1) - timedelta(days=1)
+    overdue = last["month"] < exp.strftime("%Y-%m")
+    common = dict(source="GJEPC monthly export review (provisional), Polished Lab Grown Diamonds section", source_url=GJ_PAGE, status="stale" if overdue else "official")
+    if overdue:
+        common["stale_reason"] = f"report for {exp.strftime('%Y-%m')} expected by now but not loaded (GJEPC blocks cloud servers; add the PDF to inbox/)"
     note = ("GJEPC is the Commerce Ministry's export promotion council; figures are provisional and are later reconciled with DGCI&S, "
             "so last year's months are often restated. Each monthly figure here is taken from that month's own report (first published).")
     out = {"lgd_rows": dict(label="LGD polished exports, monthly table", value=len(rows), unit="months", as_of=last["month"],
@@ -192,7 +206,7 @@ def main():
                     old = dict(old); old["status"] = "stale"; old["stale_reason"] = errors[name]
                     items[k] = old
 
-    run("gjepc", gjepc)
+    run("gjepc", lambda: gjepc(errors))
     run("caratlytics", caratlytics, "retail_lgd")
     for k in BLS:
         run("bls_" + k, lambda k=k: bls(k), k)

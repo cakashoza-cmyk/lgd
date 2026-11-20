@@ -97,7 +97,7 @@ function renderSimple() {
   if (d.dv != null) why.push(fill(d.dv >= S.demandPct ? t.r_dem_up : d.dv <= -S.demandPct ? t.r_dem_down : t.r_dem_flat, { p: pct(d.dv) }));
   if (d.news) why.push(t.r_news);
   $("a-reason").textContent = why.join(" ");
-  $("a-thin").textContent = d.thin ? t.thin : ""; $("a-thin").className = "a-thin";
+  $("a-thin").textContent = [ (item("lgd_exports") || {}).status === "stale" ? t.stale : "", d.thin ? t.thin : ""].filter(Boolean).join(" "); $("a-thin").className = "a-thin";
   const pc = item("lgd_ppc"), py = item("lgd_ppc_ytd");
   $("p-big").textContent = pc ? usd(pc.value) + t.ct : "—";
   $("p-sub").textContent = pc ? fill(t.p_sub, { m: mname(pc.as_of) }) : "";
@@ -195,7 +195,7 @@ function renderSources() {
   $("s-sources").innerHTML = `<div class="card"><div class="ct">Data items</div>${tbl(["Item", "Value", "As of", "Status", "Source"], its.map(([k, it]) => [esc(it.label), f2(it.value) + " " + esc(it.unit), esc(it.as_of), pill(it.status), `<a href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source)}</a>`]))}
    ${Object.keys(L.errors || {}).length ? `<div class="warn">Last refresh errors: ${esc(JSON.stringify(L.errors))}</div>` : ""}</div>
   <div class="card"><div class="ct">Rates checked by hand (${R.verified_on})</div>${tbl(["Item", "Rate", "Source"], ["us_301_india", "us_mfn_7104_91_10", "us_301_others", "dgvcl_htp1"].map((k) => [esc(R[k].label), R[k].pct != null ? R[k].pct + "%" : R[k].bands.map((b) => "₹" + f2(b.rs_kwh)).join(" / ") + "/kWh", `<a href="${esc(R[k].url)}" target="_blank" rel="noopener">${esc(R[k].source)}</a><br><span class="sub">${esc(R[k].detail)}</span>`]))}<p class="sub">${esc(R.gjepc_release.detail)}</p></div>
-  <div class="card"><div class="ct">Not available free (kept grey)</div><ul><li>Rough LGD prices and rough LGD import volumes: GJEPC shows them only as images in the report annex; TradeStat (DGCI&amp;S) data for Apr–Oct 2026 is not yet released per GJEPC. No free consistent rough price series found.</li><li>Surat polished LGD trade prices: no free public series. Use the quote tracker on the main screen.</li><li>US Census monthly imports of HS 7104 from India: the Census API needs a sign-up key, so it is not used.</li></ul></div>
+  <div class="card"><div class="ct">Not available free (kept grey)</div><ul><li>Rough LGD prices and rough LGD import volumes: GJEPC shows them only as images in the report annex; TradeStat (DGCI&amp;S) data for Apr–Oct 2026 is not yet released per GJEPC. No free consistent rough price series found.</li><li>GJEPC's website refuses cloud servers (HTTP 403 from GitHub Actions). If a new month is not picked up, upload the report PDF to the repo's <a href="https://github.com/cakashoza-cmyk/lgd/tree/main/inbox">inbox/</a> folder; the workflow parses it the same way.</li><li>Surat polished LGD trade prices: no free public series. Use the quote tracker on the main screen.</li><li>US Census monthly imports of HS 7104 from India: the Census API needs a sign-up key, so it is not used.</li></ul></div>
   <div class="card"><div class="ct">Headlines (context only; a price-fall headline can only soften 'stock up')</div><ul>${(L.headlines || []).map((h) => `<li>${esc(h.date)} <a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.title)}</a></li>`).join("")}</ul><p class="sub">${esc(L.headlines_source)}</p></div>`;
 }
 function renderAll() {

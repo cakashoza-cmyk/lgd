@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: "30 4 * * *"   # daily 10:00 IST; GJEPC publishes monthly (around the 7th-15th), so a daily check catches it within a day
   workflow_dispatch:
+  push:
+    paths: ["inbox/**.pdf"]
 permissions:
   contents: write
 concurrency:
@@ -31,5 +33,6 @@ jobs:
         run: |
           git config user.name "lgd-bot"
           git config user.email "lgd-bot@users.noreply.github.com"
+          git pull --rebase -q || true
           git add data
           git diff --cached --quiet || (git commit -m "data refresh $(TZ=Asia/Kolkata date '+%Y-%m-%d %H:%M IST')" && git push)
