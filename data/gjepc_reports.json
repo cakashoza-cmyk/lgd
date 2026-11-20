@@ -629,5 +629,18 @@
 "ytd_from": "2025-04",
 "ytd_usd_mn": 258.5,
 "ytd_usd_mn_prev": 319.7
+},
+"inbox/GJEPC_Exports_October_2026.pdf": {
+"month": "2026-10",
+"month_usd_mn": 170.46,
+"month_usd_mn_prev": 94.17,
+"report_date": "2026-11-09",
+"ytd_from": "2026-04",
+"ytd_lakh_ct": 129.13,
+"ytd_lakh_ct_prev": 95.64,
+"ytd_usd_mn": 855.56,
+"ytd_usd_mn_prev": 679.31,
+"ytd_usd_per_ct": 66.26,
+"ytd_usd_per_ct_prev": 71.03
 }
 }
