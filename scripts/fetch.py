@@ -12,6 +12,9 @@ OUT = ROOT / "data" / "live.json"
 CACHE = ROOT / "data" / "gjepc_reports.json"
 IST = timezone(timedelta(hours=5, minutes=30))
 UA = {"User-Agent": "Mozilla/5.0 (LGD desk data refresh; github.com/cakashoza-cmyk/lgd)"}
+BROWSER = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8", "Accept-Language": "en-IN,en;q=0.9",
+           "Referer": "https://gjepc.org/"}
 NOW = datetime.now(IST)
 GJ_PAGE = "https://gjepc.org/statistics.php"
 
@@ -40,14 +43,14 @@ def gjepc():
     """GJEPC (Gem & Jewellery Export Promotion Council) monthly export reports, public PDFs on gjepc.org/statistics.php.
     Only the text 'Polished Lab Grown Diamonds' section is read. Parsed reports are cached in data/gjepc_reports.json."""
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
-    page = get(GJ_PAGE, timeout=60).decode("utf-8", "ignore")
+    page = get(GJ_PAGE, BROWSER, timeout=60).decode("utf-8", "ignore")
     links = sorted(set(html.unescape(l) for l in re.findall(r'href="(admin/StatisticsExport/[^"]+\.pdf)"', page, re.I)))
     new = 0
     for l in links:
         if l in cache:
             continue
         try:
-            cache[l] = G.parse(pdf_text(get("https://gjepc.org/" + l, timeout=90)))
+            cache[l] = G.parse(pdf_text(get("https://gjepc.org/" + l, BROWSER, timeout=90)))
         except Exception as e:  # noqa: BLE001
             print("gjepc pdf failed", l, e); continue
         new += 1
